@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "John Lemon's Haunted Jaunt.sln"
+    "dotnet.defaultSolution": "John-Lemon.sln"
 }

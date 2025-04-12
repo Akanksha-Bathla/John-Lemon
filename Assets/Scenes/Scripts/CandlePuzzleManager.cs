@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class CandlePuzzleManager : MonoBehaviour
 {
-    public List<int> correctOrder = new List<int> { 2, 4, 1, 3 }; // Change this to your desired order
+    public List<int> correctOrder = new List<int> { 2, 4, 1, 3 }; // Set desired order here
     private List<int> playerOrder = new List<int>();
     public List<Button> candles; // Assign 4 candle buttons in the Inspector
 
-    public Sprite litSprite;   // Drag the lit candle sprite here
-    public Sprite unlitSprite; // Drag the unlit candle sprite here
+    public Sprite litSprite;   // Assign lit sprite
+    public Sprite unlitSprite; // Assign unlit sprite
 
     public void OnCandleClicked(int candleNumber)
     {
@@ -40,6 +40,17 @@ public class CandlePuzzleManager : MonoBehaviour
         PuzzleComplete();
     }
 
+    // private void ResetPuzzle()
+    // {
+    //     Debug.Log("Wrong order! Try again.");
+    //     playerOrder.Clear();
+
+    //     foreach (Button candle in candles)
+    //     {
+    //         candle.GetComponent<Image>().sprite = unlitSprite;
+    //     }
+    // }
+
     private void ResetPuzzle()
     {
         Debug.Log("Wrong order! Try again.");
@@ -47,14 +58,36 @@ public class CandlePuzzleManager : MonoBehaviour
 
         foreach (Button candle in candles)
         {
-            candle.GetComponent<Image>().sprite = unlitSprite;
+            // Check if the Image component is not null
+            Image candleImage = candle.GetComponent<Image>();
+            if (candleImage != null) // Ensure it's not destroyed or missing
+            {
+                candleImage.sprite = unlitSprite;
+            }
+            else
+            {
+                Debug.LogWarning("Candle Image component is missing or destroyed.");
+            }
         }
     }
 
     private void PuzzleComplete()
     {
         Debug.Log("Puzzle Solved!");
-        // Replace with your actual main scene name or action
+
+        // Call PuzzleSolved from the PuzzleManager singleton
+
+        if (PuzzleManager.Instance != null)
+        {
+            Debug.Log("if");
+            PuzzleManager.Instance.PuzzleSolved();
+        }
+        else
+        {
+            Debug.Log("else");
+        }
+        Debug.Log("Main Scene loading");
+        // Now safely load the main scene
         SceneManager.LoadScene("MainScene");
     }
 }
