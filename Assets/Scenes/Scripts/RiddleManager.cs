@@ -30,7 +30,7 @@ public class RiddleManager : MonoBehaviour
             feedbackText.text = "Correct!";
             feedbackText.color = Color.green;
             // You can add: scoreManager.AddPoint(); or similar
-            puzzleManager.SolvePuzzle(puzzleManager.NoOfPuzzlesSolved + 1); // 0 for the first puzzle
+            puzzleManager.PuzzleSolved(); // 0 for the first puzzle
             CloseRiddle(); // Optional
         }
         else
