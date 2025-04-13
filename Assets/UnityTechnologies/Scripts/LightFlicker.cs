@@ -26,9 +26,9 @@ public class LightFlicker : MonoBehaviour
     float m_Timer;
     float m_FlickerLightIntensity;
     
+    const string k_EmissiveColorName = "_EmissionColor";
     static readonly int k_EmissionColorID = Shader.PropertyToID (k_EmissiveColorName);
     
-    const string k_EmissiveColorName = "_EmissionColor";
     const string k_EmissionName = "_Emission";
     const float k_LightIntensityToEmission = 2f / 3f;
 
