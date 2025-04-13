@@ -12,6 +12,15 @@ public class CandlePuzzleManager : MonoBehaviour
     public Sprite litSprite;   // Assign lit sprite
     public Sprite unlitSprite; // Assign unlit sprite
 
+    public Button closeButton; // <-- Add this
+
+    void Start()
+    {
+        if (closeButton != null)
+            closeButton.onClick.AddListener(ClosePuzzleScene);
+    }
+
+
     public void OnCandleClicked(int candleNumber)
     {
         if (playerOrder.Count < correctOrder.Count)
@@ -88,6 +97,12 @@ public class CandlePuzzleManager : MonoBehaviour
         }
         Debug.Log("Main Scene loading");
         // Now safely load the main scene
+        SceneManager.LoadScene("MainScene");
+    }
+    
+    private void ClosePuzzleScene() // <-- Add this
+    {
+        Debug.Log("Close button clicked - Returning to MainScene");
         SceneManager.LoadScene("MainScene");
     }
 }

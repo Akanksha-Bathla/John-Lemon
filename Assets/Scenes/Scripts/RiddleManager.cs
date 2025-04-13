@@ -12,6 +12,7 @@ public class RiddleManager : MonoBehaviour
     public TMP_Text feedbackText;
 
     private string correctAnswer = "keyboard";
+    private bool solved = false;
 
     public void ShowRiddle()
     {
@@ -30,7 +31,10 @@ public class RiddleManager : MonoBehaviour
             feedbackText.text = "Correct!";
             feedbackText.color = Color.green;
             // You can add: scoreManager.AddPoint(); or similar
-            puzzleManager.PuzzleSolved(); // 0 for the first puzzle
+            if(!solved){
+                puzzleManager.PuzzleSolved(); // 0 for the first puzzle
+                solved = true;
+            }
             CloseRiddle(); // Optional
         }
         else
