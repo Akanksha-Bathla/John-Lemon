@@ -9,6 +9,7 @@ public class PuzzleManager : MonoBehaviour
     public int totalPuzzles = 3;
     public Image[] starImages;             // These will be reassigned each scene
     public Sprite filledStarSprite;
+    public Sprite emptyStarSprite;
 
     private void Awake()
     {
@@ -56,4 +57,22 @@ public class PuzzleManager : MonoBehaviour
     {
         return puzzlesSolvedCount >= totalPuzzles;
     }
+    
+    public void RestartGame()
+    {
+        // Reset logic
+        puzzlesSolvedCount = 0;
+        ResetStars();
+
+        // Optional: reload the scene
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void ResetStars()
+    {
+        foreach (Image star in starImages)
+        {
+            star.sprite = emptyStarSprite;
+        }
+    }
 }

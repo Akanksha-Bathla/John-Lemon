@@ -30,6 +30,7 @@ public class GameEnding : MonoBehaviour
     public void CaughtPlayer()
     {
         m_IsPlayerCaught = true;
+        puzzleManager.RestartGame();
     }
 
     void Update()
